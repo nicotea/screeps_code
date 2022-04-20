@@ -20,6 +20,8 @@ __pragma__('noalias', 'type')
 __pragma__('noalias', 'update')
 
 # un commentaire bidon
+def nimportequoi():
+    pass
 
 def main():
     """
