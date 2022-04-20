@@ -19,6 +19,8 @@ __pragma__('noalias', 'set')
 __pragma__('noalias', 'type')
 __pragma__('noalias', 'update')
 
+# Update new function
+
 
 def main():
     """
