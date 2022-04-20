@@ -61,6 +61,7 @@ sdist/
 var/
 book/
 js_files/
+src/defs/
 *.egg-info/
 .installed.cfg
 *.egg
