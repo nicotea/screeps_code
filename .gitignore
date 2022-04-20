@@ -59,6 +59,7 @@ lib64/
 parts/
 sdist/
 var/
+book/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -88,6 +89,7 @@ nb-configuration.xml
 *.iml
 *.ipr
 *.iws
+*.json
 node_modules
 env
 .screeps-password
@@ -120,3 +122,4 @@ coverage.xml
 /markdown/
 /config.default.json
 token.txt
+password.py
