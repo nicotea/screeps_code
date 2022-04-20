@@ -36,17 +36,10 @@ def main():
             del Memory.creeps[name]
             console.log('Clearing non-existing creep memory:', name)
 
-    # Put Extansion building sites
-    extension_struct.build_extension()
-
     # Run each spawn
     for name in Object.keys(Game.spawns):
         spawn = Game.spawns[name]
         spawn_struct.run_spawn(spawn)
-    
-
-    console.log('Number of creeps:', len(Game.creeps))
-
 
 
 module.exports.loop = main
