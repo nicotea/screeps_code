@@ -113,6 +113,7 @@ package-lock.json
 *.json
 file_expander.py
 build.py
+requirements.txt
 
 # Unit test / coverage reports #
 ################################
