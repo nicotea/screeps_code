@@ -78,3 +78,4 @@ def run_harvester(creep):
                     creep.moveTo(target)
         else:
             creep.moveTo(target)
+

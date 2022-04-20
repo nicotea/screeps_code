@@ -62,6 +62,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+archives/
 
 # Installer logs #
 ##################
@@ -94,6 +95,9 @@ env
 .screeps-email
 config.json
 __py_build__/
+config_public.json
+screeps-starter-python.code-workspace
+
 
 # Misc files #
 ##############
