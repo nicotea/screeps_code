@@ -22,6 +22,10 @@ __pragma__('noalias', 'update')
 def function_pas_pour_raph():
     console.log("J'emmerde Raph")
 
+# un commentaire bidon
+def nimportequoi():
+    pass
+
 def main():
     """
     Main game logic loop.
