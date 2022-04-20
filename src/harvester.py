@@ -9,12 +9,11 @@ __pragma__('noalias', 'set')
 __pragma__('noalias', 'type')
 __pragma__('noalias', 'update')
 
-
 def run_harvester(creep):
-    target = creep.room.find(FIND_SOURCES)
+    # Stationary harvesting of closest source
+    target = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE)
     if creep.harvest(target) == ERR_NOT_IN_RANGE:
-        creep.moveTo(target)
-    
+        creep.moveTo(target)    
     else:
         creep.harvest(target)
 

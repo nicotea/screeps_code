@@ -2,8 +2,8 @@ from defs import *
 
 def run_spawn(spawn):
     
-    #nr_harvester = _.filter(Game.creeps, Game.creeps.memory.role == 'harvester')
-    #console.log(nr_harvester)
+    # nr_harvester = _.filter(Game.creeps, Game.creeps.memory.role == 'harvester')
+    # console.log(nr_harvester)
     # nr_hauler =
     # If nr_harvester <=  2 * nr_hauler, build harvester
 
