@@ -1,4 +1,5 @@
 import harvester
+import builder
 import spawn_struct
 import extension_struct
 # defs is a package which claims to export all constants and some JavaScript objects, but in reality does
@@ -27,7 +28,13 @@ def main():
     # Run each creep
     for name in Object.keys(Game.creeps):
         creep = Game.creeps[name]
-        harvester.run_harvester(creep)
+        if(creep.memory.role == 'harvester'):
+            harvester.run_harvester(creep)
+        elif(creep.memory.role == 'builder'):
+            builder.run_builder(creep)
+        else:
+            console.log(creep.memory.role)
+            harvester.run_harvester(creep)
 
     extension_struct.build_extension()
 
