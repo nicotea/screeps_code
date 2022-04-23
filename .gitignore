@@ -60,6 +60,8 @@ parts/
 sdist/
 var/
 book/
+js_files/
+src/defs/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -89,6 +91,7 @@ nb-configuration.xml
 *.iml
 *.ipr
 *.iws
+*.json
 node_modules
 env
 .screeps-password
@@ -107,6 +110,10 @@ docs/_build/
 # it's recommended that we check this in, but with how infrequently this project is updated,
 # that would cause everyone to end up with an extremely outdated rollup.
 package-lock.json
+*.json
+file_expander.py
+build.py
+requirements.txt
 
 # Unit test / coverage reports #
 ################################
@@ -121,3 +128,4 @@ coverage.xml
 /markdown/
 /config.default.json
 token.txt
+password.py
