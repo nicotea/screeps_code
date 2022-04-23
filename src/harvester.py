@@ -18,15 +18,3 @@ def run_harvester(creep):
         creep.harvest(target)
 
 
-def run_hauler(creep):
-    #If we have energy capacity, pick up dropped resources
-    # if creep.store.getFreeCapacity[RESOURCE_ENERGY] > 0:
-    #     target = (creep.room.find(FIND_DROPPED_RESOURCES))
-    #     if creep.pickup(target) == ERR_NOT_IN_RANGE:
-    #         creep.moveTo(target)
-    #     else:
-    #         creep.pickup(target)
-    # Otherwise, go to spawn        
-    # else:
-        creep.moveTo(Game.spawns['Spawn1'])
-
