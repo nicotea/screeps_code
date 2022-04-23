@@ -19,6 +19,8 @@ __pragma__('noalias', 'set')
 __pragma__('noalias', 'type')
 __pragma__('noalias', 'update')
 
+# solo nico
+
 def function_pas_pour_raph():
     console.log("J'emmerde Raph")
 
