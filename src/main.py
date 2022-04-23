@@ -2,6 +2,7 @@ import harvester
 import builder
 import spawn_struct
 import extension_struct
+import road_struct
 # defs is a package which claims to export all constants and some JavaScript objects, but in reality does
 #  nothing. This is useful mainly when using an editor like PyCharm, so that it 'knows' that things like Object, Creep,
 #  Game, etc. do exist.
@@ -48,5 +49,6 @@ def main():
         spawn = Game.spawns[name]
         spawn_struct.run_spawn(spawn)
 
+    road_struct.build_road()
 
 module.exports.loop = main

@@ -20,18 +20,16 @@ def run_spawn(spawn):
         # spawning.
         elif num_creeps <= 15:
             # Define role of creep to spawn
-            harvesters = _.filter(Game.creeps, lambda creep: creep.memory.role == 'harvester')
-            builder = _.filter(Game.creeps, lambda creep: creep.memory.role == 'builder')
+            harvesters = _.sum(Game.creeps, lambda creep: creep.memory.role == 'harvester')
+            builder = _.sum(Game.creeps, lambda creep: creep.memory.role == 'builder')
             role = None
-            if len(builder) < 2 and _.sum(Game.constructionSites, lambda c: c.pos.roomName == spawn.pos.roomName) > 0:
+            if builder < 2 and _.sum(Game.constructionSites, lambda c: c.pos.roomName == spawn.pos.roomName) > 0:
                 role = 'builder'
-            elif len(harvesters) < 13:
+            elif harvesters < 13:
                 role = 'harvester'
             # If we have more energy, spawn a bigger creep.
             if role != None:
-                console.log(role)
                 if spawn.room.energyAvailable >= 350:
                     spawn.createCreep([WORK, CARRY, CARRY, MOVE, MOVE, MOVE], role= role)
                 else:
-                    console.log('spawn')
                     spawn.createCreep([WORK, CARRY, MOVE, MOVE], role= role)

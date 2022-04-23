@@ -25,7 +25,10 @@ def run_builder(creep):
     
 
     if(creep.memory.building):
-        targets = creep.room.find(FIND_CONSTRUCTION_SITES)
+        if len(creep.room.find(FIND_CONSTRUCTION_SITES, { filter: lambda cs: cs.progress > 0 })) > 0:
+            targets = creep.room.find(FIND_CONSTRUCTION_SITES, { filter: lambda cs: cs.progress > 0 })
+        else:
+            targets = creep.room.find(FIND_CONSTRUCTION_SITES)
         if(targets.length):
             if(creep.build(targets[0]) == ERR_NOT_IN_RANGE):
                 creep.moveTo(targets[0], {'visualizePathStyle': {'stroke': '#ffffff'}})
