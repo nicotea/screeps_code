@@ -14,7 +14,6 @@ def run_hauler(creep):
     # !!! need to find a way to not hard code: close_to_ctrl
     ctrl_pos = creep.room.controller.pos
     close_to_ctrl = creep.room.getPositionAt(11, 33)
-    creep.room.createFlag(11, 33, 'Flag1')
 
 
     # console test
@@ -36,21 +35,7 @@ def run_hauler(creep):
         creep.moveTo(Game.spawns['Spawn1'])
         creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY)
     
-    elif not creep.pos.inRangeTo(ctrl_pos, 3):
-
-        
-        console.log('1' + creep.pos)
-        console.log('2' + close_to_ctrl)
-        console.log(creep.pos.isEqualTo(close_to_ctrl))
-        console.log(creep.pos == creep.room.getPositionAt(11, 33))
-        console.log('5' + type(creep.pos))
-        console.log('6' + type(creep.room.getPositionAt(11, 33)))
-        console.log(creep.room.getPositionAt(11, 33).inRangeTo(Game.flags.Flag1.pos,3))
-        console.log(creep.room.getPositionAt(11, 37).inRangeTo(Game.flags.Flag1.pos,3))
-
-
-        
-
+    elif not creep.pos.inRangeTo(ctrl_pos, 3):       
         creep.moveTo(ctrl_pos)
 
     elif creep.pos.inRangeTo(ctrl_pos, 3):

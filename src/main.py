@@ -28,6 +28,9 @@ def main():
     """
     Main game logic loop.
     """
+    # Console test
+
+
 
     # Run each creep
     for name in Object.keys(Game.creeps):
@@ -40,6 +43,7 @@ def main():
             upgrader.run_upgrader(creep)
         else:
             pass
+
 
 
     # Delete memory of non-existant creeps
