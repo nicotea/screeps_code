@@ -1,7 +1,8 @@
 import harvester
-import builder
+import hauler
+import upgrader
 import spawn_struct
-import extension_struct
+
 # defs is a package which claims to export all constants and some JavaScript objects, but in reality does
 #  nothing. This is useful mainly when using an editor like PyCharm, so that it 'knows' that things like Object, Creep,
 #  Game, etc. do exist.
@@ -20,7 +21,8 @@ __pragma__('noalias', 'set')
 __pragma__('noalias', 'type')
 __pragma__('noalias', 'update')
 
-# solo raph
+# Update new function
+
 
 def main():
     """
@@ -30,16 +32,17 @@ def main():
     # Run each creep
     for name in Object.keys(Game.creeps):
         creep = Game.creeps[name]
-        if(creep.memory.role == 'harvester'):
+        if creep.memory.role == 'harvester':
             harvester.run_harvester(creep)
-        elif(creep.memory.role == 'builder'):
-            builder.run_builder(creep)
+        elif creep.memory.role == 'hauler':
+            hauler.run_hauler(creep)
+        elif creep.memory.role == 'upgrader':
+            upgrader.run_upgrader(creep)
         else:
-            harvester.run_harvester(creep)
+            pass
 
-    extension_struct.build_extension()
 
-    # Delete memory of non-existing creeps
+    # Delete memory of non-existant creeps
     for name in Object.keys(Memory.creeps):
         if not Game.creeps[name]:
             del Memory.creeps[name]
@@ -49,6 +52,5 @@ def main():
     for name in Object.keys(Game.spawns):
         spawn = Game.spawns[name]
         spawn_struct.run_spawn(spawn)
-
 
 module.exports.loop = main

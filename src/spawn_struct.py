@@ -1,37 +1,42 @@
 from defs import *
 
-__pragma__('noalias', 'name')
-__pragma__('noalias', 'undefined')
-__pragma__('noalias', 'Infinity')
-__pragma__('noalias', 'keys')
-__pragma__('noalias', 'get')
-__pragma__('noalias', 'set')
-__pragma__('noalias', 'type')
-__pragma__('noalias', 'update')
-
 def run_spawn(spawn):
-    if not spawn.spawning:
-        # Get the number of our creeps in the room.
-        num_creeps = _.sum(Game.creeps, lambda c: c.pos.roomName == spawn.pos.roomName)
-        # If there are no creeps, spawn a creep once energy is at 250 or more
-        if num_creeps <= 0 and spawn.room.energyAvailable >= 250:
-            spawn.createCreep([WORK, CARRY, MOVE, MOVE])
-        # If there are less than 15 creeps but at least one, wait until all spawns and extensions are full before
-        # spawning.
-        elif num_creeps <= 15:
-            # Define role of creep to spawn
-            harvesters = _.filter(Game.creeps, lambda creep: creep.memory.role == 'harvester')
-            builder = _.filter(Game.creeps, lambda creep: creep.memory.role == 'builder')
-            role = None
-            if len(builder) < 2 and _.sum(Game.constructionSites, lambda c: c.pos.roomName == spawn.pos.roomName) > 0:
-                role = 'builder'
-            elif len(harvesters) < 13:
-                role = 'harvester'
-            # If we have more energy, spawn a bigger creep.
-            if role != None:
-                console.log(role)
-                if spawn.room.energyAvailable >= 350:
-                    spawn.createCreep([WORK, CARRY, CARRY, MOVE, MOVE, MOVE], role= role)
-                else:
-                    console.log('spawn')
-                    spawn.createCreep([WORK, CARRY, MOVE, MOVE], role= role)
+    
+    nr_harvester = _.filter(Game.creeps, lambda creep: creep.memory.role == 'harvester')
+    console.log('number of harvester: ' + len(nr_harvester))
+    nr_hauler = _.filter(Game.creeps, lambda creep: creep.memory.role == 'hauler')
+    console.log('number of hauler: ' + len(nr_hauler))
+    nr_upgrader = _.filter(Game.creeps, lambda creep: creep.memory.role == 'upgrader')
+    console.log('number of upgrader: ' + len(nr_upgrader))
+
+
+    
+    # console test
+    # console.log('len(nr_harvester) + len(nr_hauler) <= 5: is ' + (len(nr_harvester) + len(nr_hauler) <= 5))
+    # console.log('len(nr_harvester) / 2 <= len(nr_hauler / 3) is: ' + (len(nr_harvester) / 2 <= len(nr_hauler) / 3))
+    
+    # limit creeps to 5 max
+    if len(nr_harvester) + len(nr_hauler) < 5:
+        # Keep ration of 2 harvesters for 3 haulers
+        if len(nr_harvester) / 2 <= len(nr_hauler) / 3 or len(nr_harvester) == 0:
+            # Spawn harvester
+            creep_name = 'harvester' +  Game.time
+            spawn.spawnCreep([WORK, WORK, MOVE], creep_name, { 'memory': {'role': 'harvester'}})    
+
+
+        # Otherwise, build hauler  
+        else:
+            creep_name = 'hauler' +  Game.time
+            spawn.spawnCreep([CARRY, CARRY, MOVE, MOVE], creep_name, { 'memory': {'role': 'hauler'}})
+
+    # If less than 2 upgraders        
+    elif len(nr_upgrader) < 2:
+        creep_name = 'upgrader' +  Game.time
+        spawn.spawnCreep([WORK, CARRY, MOVE, MOVE], creep_name, { 'memory': {'role': 'upgrader'}})
+
+    else:
+        pass
+
+    # for screeps
+    # Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, MOVE, MOVE], 'Hauler' +  Game.time, { 'memory': {'role': 'hauler'}})
+
