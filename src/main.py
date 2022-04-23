@@ -25,6 +25,7 @@ def function_pas_pour_raph():
 # un commentaire bidon
 def nimportequoi():
     pass
+# solo
 
 def main():
     """
