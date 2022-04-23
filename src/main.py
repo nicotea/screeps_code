@@ -33,7 +33,6 @@ def main():
         elif(creep.memory.role == 'builder'):
             builder.run_builder(creep)
         else:
-            console.log(creep.memory.role)
             harvester.run_harvester(creep)
 
     extension_struct.build_extension()
