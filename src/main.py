@@ -1,8 +1,8 @@
 import harvester
 import builder
 import spawn_struct
-import extension_struct
-import road_struct
+from extension_struct import build_extension
+from road_struct import build_road
 # defs is a package which claims to export all constants and some JavaScript objects, but in reality does
 #  nothing. This is useful mainly when using an editor like PyCharm, so that it 'knows' that things like Object, Creep,
 #  Game, etc. do exist.
@@ -21,12 +21,7 @@ __pragma__('noalias', 'set')
 __pragma__('noalias', 'type')
 __pragma__('noalias', 'update')
 
-def main():
-    """
-    Main game logic loop.
-    """
-
-    # Run each creep
+def run_creeps():
     for name in Object.keys(Game.creeps):
         creep = Game.creeps[name]
         if(creep.memory.role == 'harvester'):
@@ -36,19 +31,36 @@ def main():
         else:
             harvester.run_harvester(creep)
 
-    extension_struct.build_extension()
-
+def clear_memory():
     # Delete memory of non-existing creeps
     for name in Object.keys(Memory.creeps):
         if not Game.creeps[name]:
             del Memory.creeps[name]
             console.log('Clearing non-existing creep memory:', name)
 
+def run_spawns():
     # Run each spawn
     for name in Object.keys(Game.spawns):
         spawn = Game.spawns[name]
         spawn_struct.run_spawn(spawn)
 
-    road_struct.build_road()
+def main():
+    """
+    Main game logic loop.
+    """
+    # Run creeps logic
+    run_creeps()
+
+    # Delete memory of non-existing creeps
+    clear_memory()
+
+    # Build extensions if necessary
+    build_extension()
+
+    # Run each spawn
+    run_spawns()
+
+    # Build roads construction site when necessary
+    build_road()
 
 module.exports.loop = main

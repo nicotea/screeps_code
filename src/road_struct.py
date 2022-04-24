@@ -22,5 +22,8 @@ def build_road():
                     if not pos.look(LOOK_STRUCTURES).structure == STRUCTURE_ROAD:
                         pos.createConstructionSite(STRUCTURE_ROAD)
         Memory.build_road = True
-    # for cs in Object.keys(Game.constructionSites):
-    #     Game.constructionSites[cs].remove()
+
+    Memory.build_road_reset = False
+    # if Memory.build_road and not Memory.build_road_reset:
+    #     Memory.build_road = False
+    #     Memory.build_road_reset = True

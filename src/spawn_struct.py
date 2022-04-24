@@ -29,7 +29,9 @@ def run_spawn(spawn):
                 role = 'harvester'
             # If we have more energy, spawn a bigger creep.
             if role != None:
-                if spawn.room.energyAvailable >= 350:
+                if spawn.room.energyAvailable >= 450:
+                    spawn.createCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], role= role)
+                elif spawn.room.energyAvailable >= 350:
                     spawn.createCreep([WORK, CARRY, CARRY, MOVE, MOVE, MOVE], role= role)
                 else:
                     spawn.createCreep([WORK, CARRY, MOVE, MOVE], role= role)
