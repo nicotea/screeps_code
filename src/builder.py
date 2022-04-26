@@ -50,7 +50,6 @@ def run_builder(creep):
         else:
             # Get a random new target.
             target = _(creep.room.find(FIND_CONSTRUCTION_SITES)).filter(lambda cs: cs.progress > 0).sample()
-            console.log(target.id)
             if target == undefined:
                 target = _(creep.room.find(FIND_CONSTRUCTION_SITES)).sample()
                 # if there are no more construction sites at all, the creep becomes a harvester
