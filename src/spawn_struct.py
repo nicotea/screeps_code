@@ -32,7 +32,7 @@ def run_spawn(spawn):
     # If less than 2 upgraders        
     elif len(nr_upgrader) < 2:
         creep_name = 'upgrader' +  Game.time
-        spawn.spawnCreep([WORK, CARRY, MOVE, MOVE], creep_name, { 'memory': {'role': 'upgrader'}})
+        spawn.spawnCreep([WORK, WORK, CARRY, MOVE], creep_name, { 'memory': {'role': 'upgrader'}})
 
     else:
         pass
