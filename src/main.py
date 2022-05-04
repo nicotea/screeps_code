@@ -1,6 +1,7 @@
 import harvester
 import builder
 import spawn_struct
+from template_room import room_template_build
 from extension_struct import build_extension
 from road_struct import build_road
 # defs is a package which claims to export all constants and some JavaScript objects, but in reality does
@@ -44,6 +45,14 @@ def run_spawns():
         spawn = Game.spawns[name]
         spawn_struct.run_spawn(spawn)
 
+def test_code():
+    pos = __new__(RoomPosition(28, 26,'W1N7'))
+    if pos.lookFor(LOOK_STRUCTURES) == '':
+        console.log("Ca marche, ya rien!")
+    pos = __new__(RoomPosition(34, 25,'W1N7'))
+    if pos.lookFor(LOOK_STRUCTURES) != []:
+        console.log("Ca marche, ya quelque chose!")
+
 def main():
     """
     Main game logic loop.
@@ -62,5 +71,8 @@ def main():
 
     # Build roads construction site when necessary
     build_road()
+
+    # Build custom template for rooms
+    room_template_build()
 
 module.exports.loop = main

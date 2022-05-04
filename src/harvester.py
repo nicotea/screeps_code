@@ -46,11 +46,14 @@ def run_harvester(creep):
         if creep.memory.target:
             target = Game.getObjectById(creep.memory.target)
         else:
-            # Get a random new target.
+            # Get a random new target. TODO: prioritise on what to give, maybe distinguish builders and upgraders
             target = _(creep.room.find(FIND_STRUCTURES)) \
-                .filter(lambda s: ((s.structureType == STRUCTURE_SPAWN or s.structureType == STRUCTURE_EXTENSION)
-                                   and s.energy < s.energyCapacity) or s.structureType == STRUCTURE_CONTROLLER) \
+                .filter(lambda s: (s.structureType == STRUCTURE_SPAWN or s.structureType == STRUCTURE_EXTENSION or s.structureType == STRUCTURE_TOWER)
+                                   and s.energy < s.energyCapacity) \
                 .sample()
+            if target == undefined:
+                target = _(creep.room.find(FIND_STRUCTURES)) \
+                    .filter(lambda s: s.structureType == STRUCTURE_CONTROLLER).sample()
             creep.memory.target = target.id
 
         # If we are targeting a spawn or extension, we need to be directly next to it - otherwise, we can be 3 away.
