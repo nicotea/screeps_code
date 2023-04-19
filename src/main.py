@@ -4,6 +4,7 @@ import spawn_struct
 from template_room import room_template_build
 from extension_struct import build_extension
 from road_struct import build_road
+from tower_struct import run_tower
 # defs is a package which claims to export all constants and some JavaScript objects, but in reality does
 #  nothing. This is useful mainly when using an editor like PyCharm, so that it 'knows' that things like Object, Creep,
 #  Game, etc. do exist.
@@ -74,5 +75,8 @@ def main():
 
     # Build custom template for rooms
     room_template_build()
+
+    # Run tower logic
+    #run_tower()
 
 module.exports.loop = main

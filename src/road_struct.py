@@ -14,7 +14,6 @@ def build_road():
         for room in Object.keys(Game.rooms):
             sources = Game.rooms[room].find(FIND_SOURCES)
             controller = Game.rooms[room].controller
-            spawns = room.find(FIND_MY_SPAWNS)
             for i in range(0, len(sources)):
                 path = sources[i].pos.findPathTo(controller.pos, opts = {'ignoreCreeps': True, 'range': 1, 'ignoreRoads': True})
                 for j in range(0, len(path)):
